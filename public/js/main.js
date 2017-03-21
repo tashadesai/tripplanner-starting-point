@@ -13,17 +13,16 @@ activities.forEach(function(data){
 $('.panel-body').on('click', 'button', function(){
   var selected = $(this).prev().children(':selected').html();
   var type = $(this).prev().data().type.toString();
-  // $().append( "<option>" + data.name + "</option>" );
-  // <span class="title">Andaz Wall Street</span>
+
   if (type === 'hotel'){
-    $( "#itinerary ul" ).children()[0].append( "<span class='title'>" + selected + "</span>" + "<button class='btn btn-xs btn-danger remove btn-circle'>x</button>");
+    $( "#hotel-itin" ).append( "<span class='title'>" + selected + "</span>" + "<button class='btn btn-xs btn-danger remove btn-circle'>x</button>");
   }
 
   if (type === 'restaurant'){
-    alert("hotel!!!!")
+    alert("restaurant!!!!");
   }
 
   if (type === 'activity'){
-    alert("activi!!!!")
+    alert("activity!!!!");
   }
 });
