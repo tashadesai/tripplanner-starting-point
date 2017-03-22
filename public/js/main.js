@@ -1,4 +1,4 @@
-var num = 1;
+var num = "1";
 
 var daysObj = {};
 
@@ -17,8 +17,39 @@ $('.day-buttons').on('click', 'button', function(){
       $('#itinerary').remove();
       $('#removeSection').append(daysObj[num]);
     }
+
+    $('#day-num').text("Day " + num)
   }
 });
+
+$('#day-title').on('click', 'button', function() {
+  // num = $(this).prev().text().slice(-1);
+  // console.log(num)
+
+  // daysObj[num] = null;
+  for(var key in daysObj) {
+    if (Number(key) > Number(num)) {
+      console.log(key)
+      var current = daysObj[key];
+      daysObj[(Number(key) - 1).toString()] = current;
+      // daysObj[key] = null;
+      delete daysObj[key];
+    }
+  }
+
+  // $(this).prev().remove();
+  // $(this).remove();
+  $('#day-add').prev().remove();
+  $('#itinerary').remove();
+  $('#removeSection').append(daysObj[num]);
+})
+//remove day from obj
+//move all keys down one
+//remove circle number
+//switch itin to day before
+//move all circle buttons down one
+//move day-num title down one
+
 
 hotels.forEach(function(data){
   $( "#hotel-choices" ).append( "<option>" + data.name + "</option>" );
@@ -91,7 +122,8 @@ $('.itin-body').on('click', 'button', function() {
   var i = 1;
 //adding days
 $('#day-add').on('click', function() {
-  i++;
+  i = Number($(this).prev().text()) + 1
+  console.log(num)
   // $(this).parent().append('<button class="btn btn-circle day-btn">' + i + "</button>")
   $(this).prev().after('<button class="btn btn-circle day-btn">' + i + "</button>");
   daysObj[num] = $('#itinerary').clone(true, true);
